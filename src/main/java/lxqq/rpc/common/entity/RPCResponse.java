@@ -25,12 +25,18 @@ public class RPCResponse implements Serializable {
      * 具体数据
      */
     private Object data;
+    /**
+     * 具体数据类型
+     */
+    private Class<?> dataType;
 
     public static RPCResponse success(Object data) {
-        return RPCResponse.builder().code(200).data(data).build();
+        return RPCResponse.builder().code(200).data(data).dataType(data.getClass()).build();
     }
+
 
     public static RPCResponse fail(String message) {
         return RPCResponse.builder().code(500).message(message == null ? "服务调用失败" : message).build();
     }
+
 }
