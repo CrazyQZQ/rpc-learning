@@ -7,6 +7,8 @@ import com.alibaba.fastjson2.JSONReader;
 import lxqq.rpc.common.entity.RPCRequest;
 import lxqq.rpc.common.entity.RPCResponse;
 
+import static com.alibaba.fastjson.JSON.parseObject;
+
 /**
  * 由于json序列化的方式是通过把对象转化成字符串，丢失了Data对象的类信息，所以deserialize需要
  * 了解对象对象的类信息，根据类信息把JsonObject -> 对应的对象
@@ -14,8 +16,7 @@ import lxqq.rpc.common.entity.RPCResponse;
 public class JsonSerializer implements Serializer {
     @Override
     public byte[] serialize(Object obj) {
-        byte[] bytes = JSONObject.toJSONBytes(obj);
-        return bytes;
+        return JSONObject.toJSONBytes(obj);
     }
 
     @Override
@@ -24,7 +25,7 @@ public class JsonSerializer implements Serializer {
         // 传输的消息分为request与response
         switch (messageType) {
             case 0:
-                RPCRequest request = JSON.parseObject(bytes, RPCRequest.class, Feature.SupportClassForName);
+                RPCRequest request = parseObject(bytes, RPCRequest.class, Feature.SupportClassForName);
                 Object[] objects = new Object[request.getParams().length];
                 // 把json字串转化成对应的对象， fastjson可以读出基本数据类型，不用转化
                 for (int i = 0; i < objects.length; i++) {
@@ -40,7 +41,7 @@ public class JsonSerializer implements Serializer {
                 obj = request;
                 break;
             case 1:
-                RPCResponse response = JSON.parseObject(bytes, RPCResponse.class, Feature.SupportClassForName);
+                RPCResponse response = parseObject(bytes, RPCResponse.class, Feature.SupportClassForName);
                 Class<?> dataType = response.getDataType();
                 if (!dataType.isAssignableFrom(response.getData().getClass())) {
                     response.setData(JSONObject.toJavaObject((JSONObject) response.getData(), dataType));
