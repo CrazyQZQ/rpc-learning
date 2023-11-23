@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class RPCClient {
     public static void main(String[] args) {
         try {
-            Socket s = new Socket("127.0.0.1",8888);
+            Socket s = new Socket("127.0.0.1", 8888);
             Scanner sc = new Scanner(System.in);
             while (sc.hasNextLine()) {
                 //构建IO
@@ -20,7 +20,7 @@ public class RPCClient {
                 //读取服务器返回的消息
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String mess = br.readLine();
-                System.out.println("服务器："+mess);
+                System.out.println("服务器：" + mess);
             }
         } catch (IOException e) {
             e.printStackTrace();

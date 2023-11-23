@@ -6,9 +6,10 @@ import lxqq.rpc.version2.entity.RPCRequest;
 import lxqq.rpc.version2.entity.RPCResponse;
 import lxqq.rpc.version2.proxy.ClientProxy;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class RPCClient {
     public static void main(String[] args) {
@@ -18,7 +19,7 @@ public class RPCClient {
 
     static void send() {
         try {
-            Socket s = new Socket("127.0.0.1",8888);
+            Socket s = new Socket("127.0.0.1", 8888);
 
             RPCRequest rpcRequest = RPCRequest.builder()
                     .interfaceName("lxqq.rpc.common.service.impl.UserServiceImpl")
@@ -31,21 +32,21 @@ public class RPCClient {
             oos.writeObject(rpcRequest);
             oos.flush();
             RPCResponse response = (RPCResponse) ois.readObject();
-            System.out.println("接受到服务端消息："+ response);
+            System.out.println("接受到服务端消息：" + response);
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-        static void sendWithProxy() {
+    static void sendWithProxy() {
         // 创建一个ClientProxy对象，指定代理服务器的IP地址和端口号
-        ClientProxy proxy = new ClientProxy("127.0.0.1",8888);
+        ClientProxy proxy = new ClientProxy("127.0.0.1", 8888);
         // 通过代理获取一个UserService接口的实例对象
         UserService userService = proxy.getProxy(UserService.class);
         // 通过UserService接口的实例对象获取名为"qq"的用户信息
         User user = userService.getByName("qq");
         // 打印接收到的用户信息
-        System.out.println("接受到服务端消息："+ user);
+        System.out.println("接受到服务端消息：" + user);
     }
 
 }

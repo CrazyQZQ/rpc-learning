@@ -16,15 +16,15 @@ public class RPCServer {
             System.out.println("启动服务器....");
             while (true) {
                 Socket s = ss.accept();
-                System.out.println("客户端:"+s.getInetAddress().getHostAddress()+"已连接到服务器");
+                System.out.println("客户端:" + s.getInetAddress().getHostAddress() + "已连接到服务器");
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
                 //读取客户端发送来的消息
                 String mess = br.readLine();
-                System.out.println("客户端："+mess);
+                System.out.println("客户端：" + mess);
                 User user = userService.getByName(mess);
                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
-                bw.write(user+"\n");
+                bw.write(user + "\n");
                 bw.flush();
             }
         } catch (IOException e) {

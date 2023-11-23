@@ -34,10 +34,10 @@ public class ClientProxy implements InvocationHandler {
      * @param clazz 代理对象类型
      * @return 代理对象
      */
-    public <T>T getProxy(Class<T> clazz){
+    public <T> T getProxy(Class<T> clazz) {
         // 使用 Proxy.newProxyInstance 创建代理对象
         Object o = Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, this);
-        return (T)o;
+        return (T) o;
     }
 }
 
