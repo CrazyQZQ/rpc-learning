@@ -1,8 +1,9 @@
 package lxqq.rpc.version3.server;
 
 import lombok.AllArgsConstructor;
+import lxqq.rpc.common.entity.ServiceProvider;
+import lxqq.rpc.common.server.RPCServer;
 import lxqq.rpc.version3.Thread.WorkThread;
-import lxqq.rpc.version3.entity.ServiceProvide;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -13,7 +14,7 @@ public class SimpleRPCRPCServer implements RPCServer {
     /**
      * 服务对象
      */
-    ServiceProvide serviceProvide;
+    ServiceProvider serviceProvider;
 
     @Override
     public void start(int port) {
@@ -24,7 +25,7 @@ public class SimpleRPCRPCServer implements RPCServer {
                 // 接受信息
                 Socket s = ss.accept();
                 // 启用线程去处理
-                new Thread(new WorkThread(s, serviceProvide.getServiceMap())).start();
+                new Thread(new WorkThread(s, serviceProvider.getServiceMap())).start();
             }
         } catch (IOException e) {
             e.printStackTrace();

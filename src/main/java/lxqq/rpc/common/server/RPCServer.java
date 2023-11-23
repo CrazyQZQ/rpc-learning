@@ -1,4 +1,4 @@
-package lxqq.rpc.version3.server;
+package lxqq.rpc.common.server;
 
 /**
  * rpc服务端接口

@@ -1,11 +1,11 @@
 package lxqq.rpc.version3.client;
 
 import lxqq.rpc.common.entity.Blog;
+import lxqq.rpc.common.entity.RPCRequest;
+import lxqq.rpc.common.entity.RPCResponse;
 import lxqq.rpc.common.entity.User;
 import lxqq.rpc.common.service.BlogService;
 import lxqq.rpc.common.service.UserService;
-import lxqq.rpc.version3.entity.RPCRequest;
-import lxqq.rpc.version3.entity.RPCResponse;
 import lxqq.rpc.version3.proxy.ClientProxy;
 
 import java.io.IOException;

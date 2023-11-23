@@ -1,19 +1,21 @@
-package lxqq.rpc.version2.proxy;
+package lxqq.rpc.common.client;
 
 import lombok.AllArgsConstructor;
-import lxqq.rpc.version2.client.IOClient;
 import lxqq.rpc.common.entity.RPCRequest;
+import lxqq.rpc.common.entity.RPCResponse;
+import lxqq.rpc.version2.client.IOClient;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+/**
+ * 重构代理类，实现多种客户端
+ */
 @AllArgsConstructor
-public class ClientProxy implements InvocationHandler {
-    // 主机地址
-    private String host;
-    // 端口号
-    private int port;
+public class RPCClientProxy implements InvocationHandler {
+
+    private RPCClient client;
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) {
@@ -24,8 +26,9 @@ public class ClientProxy implements InvocationHandler {
                 .params(args)
                 .paramsTypes(method.getParameterTypes())
                 .build();
+        RPCResponse response = client.send(request);
         // 调用 IOClient 发送请求并返回结果
-        return IOClient.send(host, port, request);
+        return response.getData();
     }
 
     /**
@@ -40,4 +43,3 @@ public class ClientProxy implements InvocationHandler {
         return (T) o;
     }
 }
-

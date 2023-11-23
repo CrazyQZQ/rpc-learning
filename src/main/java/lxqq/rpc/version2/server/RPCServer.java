@@ -1,8 +1,8 @@
 package lxqq.rpc.version2.server;
 
 import lxqq.rpc.common.service.impl.UserServiceImpl;
-import lxqq.rpc.version2.entity.RPCRequest;
-import lxqq.rpc.version2.entity.RPCResponse;
+import lxqq.rpc.common.entity.RPCRequest;
+import lxqq.rpc.common.entity.RPCResponse;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

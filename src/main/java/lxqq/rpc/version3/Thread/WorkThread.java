@@ -1,7 +1,7 @@
 package lxqq.rpc.version3.Thread;
 
-import lxqq.rpc.version3.entity.RPCRequest;
-import lxqq.rpc.version3.entity.RPCResponse;
+import lxqq.rpc.common.entity.RPCRequest;
+import lxqq.rpc.common.entity.RPCResponse;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

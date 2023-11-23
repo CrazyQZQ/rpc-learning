@@ -2,8 +2,8 @@ package lxqq.rpc.version2.client;
 
 import lxqq.rpc.common.entity.User;
 import lxqq.rpc.common.service.UserService;
-import lxqq.rpc.version2.entity.RPCRequest;
-import lxqq.rpc.version2.entity.RPCResponse;
+import lxqq.rpc.common.entity.RPCRequest;
+import lxqq.rpc.common.entity.RPCResponse;
 import lxqq.rpc.version2.proxy.ClientProxy;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package lxqq.rpc.version3.entity;
+package lxqq.rpc.common.entity;
 
 import lombok.Builder;
 import lombok.Data;

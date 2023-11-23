@@ -1,8 +1,8 @@
 package lxqq.rpc.version3.proxy;
 
 import lombok.AllArgsConstructor;
+import lxqq.rpc.common.entity.RPCRequest;
 import lxqq.rpc.version3.client.IOClient;
-import lxqq.rpc.version3.entity.RPCRequest;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
